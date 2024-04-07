@@ -1,0 +1,27 @@
+.footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    position: fixed; /* Cambiado de relative a fixed para mantener el footer siempre visible */
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around; /* Distribuye los elementos a lo ancho con espacio entre ellos */
+    z-index: 1000; /* Asegúrate de que el footer esté por encima de otros elementos */
+}
+
+/* Estilos para las secciones del footer */
+.footer-section {
+    margin: 0 15px; /* Aumenta el margen para separar las secciones */
+    display: flex; /* Utiliza flex para alinear los elementos horizontalmente */
+    align-items: center; /* Centra los elementos verticalmente dentro de la sección */
+}
+
+/* Ajustes adicionales para elementos específicos dentro del footer si es necesario */
+.footer-section a,
+.footer-section p {
+    margin: 0 10px; /* Añade margen a los lados de los enlaces y párrafos para más espacio */
+    white-space: nowrap; /* Evita que los elementos se envuelvan a la siguiente línea */
+}

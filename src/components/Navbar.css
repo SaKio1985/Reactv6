@@ -1,0 +1,90 @@
+/* Estilos para el navbar */
+.navbar {
+  background-color: #dc143c;
+  color: #fff;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 10px;
+}
+
+/* Estilos para el logo */
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  font-family: 'Inter', sans-serif;
+}
+
+/* Estilos para los enlaces de navegación */
+.nav-links {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  margin-right: auto; /* Asegura que los enlaces se queden a la izquierda y el botón de tema a la derecha */
+}
+
+/* Estilos para la barra de búsqueda */
+.search-form {
+  display: flex;
+  justify-content: center;
+  flex-grow: 1; /* Permite que la barra de búsqueda crezca y se centre */
+}
+
+/* Estilos para el input de búsqueda */
+.search-form input {
+  padding: 0.5rem;
+  margin-right: 0.5rem;
+  border: 1px solid #fff;
+  border-radius: 5px;
+  background-color: #dc143c;
+  color: #fff;
+}
+
+/* Estilos para el botón de búsqueda */
+.search-form button {
+  background-color: #dc143c;
+  border: none;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: all 0.2s ease-in-out;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif 
+}
+
+/* Estilos para el botón de cambio de tema */
+.theme-toggle-btn {
+  background-color: #dc143c; /* Fondo carmesi para el botón */
+  border: none;
+  color: #333;
+  padding: 0.5rem; /* Tamaño del padding para hacerlo cuadrado */
+  cursor: pointer;
+  border-radius: 5px; /* Bordes redondeados */
+  margin-left: auto; /* Empuja el botón hacia la derecha */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  gap: 1rem;
+}
+
+/* Estilos para los iconos del botón de cambio de tema */
+.theme-toggle-btn i {
+  font-size: 1.2rem; /* Tamaño del icono */
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
+}
+
+/* Estilos para el modo oscuro */
+.dark-mode {
+  background-color: #121212;
+  color: #ffffff;
+}
+
+/* Estilos para el modo claro */
+.light-mode {
+  background-color: #ffffff;
+  color: #000000;
+}
