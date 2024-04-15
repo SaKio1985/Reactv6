@@ -14,6 +14,8 @@
   font-size: 1.5rem;
   font-weight: bold;
   font-family: 'Inter', sans-serif;
+  color: #fff; /* Cambia el color del texto a blanco */
+  text-decoration: none; /* Opcional: elimina el subrayado del enlace */
 }
 
 /* Estilos para los enlaces de navegación */
@@ -24,6 +26,8 @@
   gap: 1rem;
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   margin-right: auto; /* Asegura que los enlaces se queden a la izquierda y el botón de tema a la derecha */
+  color: #fff; /* Cambia el color del texto a blanco */
+  text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
 }
 
 /* Estilos para la barra de búsqueda */

@@ -1,15 +1,16 @@
-import React, { useState } from 'react';
-import Navbar from './components/Navbar';
-import ProductCard from './components/ProductCard';
-import data from './data.json';
-import Footer from './components/Footer/Footer';
+import React, { useState } from "react";
+import Navbar from "./components/Navbar";
+import ProductCard from "./components/ProductCard";
+import data from "./data.json";
+import Footer from "./components/Footer/Footer";
+import Banner from "./components/Banner";
 
 const App = () => {
-  const [searchTerm, setSearchTerm] = useState('');
-  const [filteredProducts, setFilteredProducts] = useState(data);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [filteredProducts, setFilteredProducts] = useState(data.products);
 
   const handleSearchChange = (e) => {
-    const newSearchTerm = e.target.value
+    const newSearchTerm = e.target.value;
     setSearchTerm(newSearchTerm);
     filterProducts(newSearchTerm);
   };
@@ -22,16 +23,17 @@ const App = () => {
   };
 
   return (
-    <div>
+    <>
       <Navbar onSearchSubmit={filterProducts} />
+      <Banner />
       <div className="product-list">
         {filteredProducts.map((product) => (
           <ProductCard key={product.id} product={product} />
         ))}
       </div>
       <Footer />
-    </div>
+    </>
   );
-}
+};
 
 export default App;
