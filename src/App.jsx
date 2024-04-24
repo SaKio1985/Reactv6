@@ -16,7 +16,7 @@ const App = () => {
   };
 
   const filterProducts = (newSearchTerm) => {
-    const filtered = data.filter((product) =>
+    const filtered = data.products.filter((product) =>
       product.title.toLowerCase().includes(newSearchTerm.toLowerCase())
     );
     setFilteredProducts(filtered);

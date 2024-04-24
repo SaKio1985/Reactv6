@@ -1,0 +1,12 @@
+.product-details-container {
+    display: flex;
+}
+
+.product-image {
+   transform: scale(0.5); /* Escala el contenedor de la imagen al 50% */
+   margin-bottom: 50px;
+  }
+
+.product-info {
+    margin-top: 50px;
+}

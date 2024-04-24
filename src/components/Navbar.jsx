@@ -3,21 +3,23 @@ import PropTypes from "prop-types";
 import "./Navbar.css";
 import { Link } from "react-router-dom";
 import { CartContext } from "../context/CartContext";
+import { AuthContext } from "../context/AuthContext";
 
 const Navbar = ({ onSearchSubmit }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [isDarkMode, setIsDarkMode] = useState(() => {
-    // Inicializa el estado del tema basado en el almacenamiento local o en el esquema de color del sistema
     return (
       localStorage.getItem("theme") === "dark" ||
       (!("theme" in localStorage) &&
         window.matchMedia("(prefers-color-scheme: dark)").matches)
     );
   });
+
   const { cart } = useContext(CartContext);
 
+  const { isAuthenticated, logout } = useContext(AuthContext);
+
   useEffect(() => {
-    // Actualiza la clase del body y el almacenamiento local cuando cambia el estado del tema
     document.body.className = isDarkMode ? "dark-mode" : "light-mode";
     localStorage.setItem("theme", isDarkMode ? "dark" : "light");
   }, [isDarkMode]);
@@ -50,37 +52,74 @@ const Navbar = ({ onSearchSubmit }) => {
         />
         <button type="submit">Buscar</button>
       </form>
-      {/* Botón de alternar entre modo claro y oscuro */}
-      {/*       <button onClick={toggleDarkMode} className="dark-mode-toggle">
-        {isDarkMode ? 'Modo Claro' : 'Modo Oscuro'}
-      </button> */}
       <button onClick={toggleDarkMode} className="theme-toggle-btn">
-        <svg
-          fill="#000000"
-          width="30px"
-          height="30px"
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <g id="Dark">
-            <path d="M12.741,20.917a9.389,9.389,0,0,1-1.395-.105,9.141,9.141,0,0,1-1.465-17.7,1.177,1.177,0,0,1,1.21.281,1.273,1.273,0,0,1,.325,1.293,8.112,8.112,0,0,0-.353,2.68,8.266,8.266,0,0,0,4.366,6.857,7.628,7.628,0,0,0,3.711.993,1.242,1.242,0,0,1,.994,1.963h0A9.148,9.148,0,0,1,12.741,20.917ZM10.261,4.05a.211.211,0,0,0-.065.011,8.137,8.137,0,1,0,9.131,12.526h0a.224.224,0,0,0,.013-.235.232.232,0,0,0-.206-.136A8.619,8.619,0,0,1,14.946,15.1a9.274,9.274,0,0,1-4.883-7.7,9.123,9.123,0,0,1,.4-3.008.286.286,0,0,0-.069-.285A.184.184,0,0,0,10.261,4.05Z" />
-          </g>
-        </svg>
+        {/* Icono de cambio de tema */}
       </button>
       <ul className="nav-links">
         <li>
-          <Link to="/">Inicio</Link>
+          <Link to="/">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              fill="currentColor"
+              className="bi bi-house-door"
+              viewBox="0 0 16 16"
+            >
+              <path d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4z" />
+            </svg>
+          </Link>
         </li>
         <li>
-          <Link to="/productos">Productos</Link>
+          <Link to="/productos">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              fill="currentColor"
+              className="bi bi-tropical-storm"
+              viewBox="0 0 16 16"
+            >
+              <path d="M8 9.5a2 2 0 1 0 0-4 2 2 0 0 0 0 4" />
+              <path d="M9.5 2c-.9 0-1.75.216-2.501.6A5 5 0 0 1 13 7.5a6.5 6.5 0 1 1-13 0 .5.5 0 0 1 1 0 5.5 5.5 0 0 0 8.001 4.9A5 5 0 0 1 3 7.5a6.5 6.5 0 0 1 13 0 .5.5 0 0 1-1 0A5.5 5.5 0 0 0 9.5 2M8 3.5a4 4 0 1 0 0 8 4 4 0 0 0 0-8" />
+            </svg>
+          </Link>
         </li>
         <li>
-          <Link to="/carrito">Carrito</Link>
+          {/* Icono de carrito */}
+          <Link to="/carrito">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              fill="currentColor"
+              className="bi bi-cart"
+              viewBox="0 0 16 16"
+            >
+              <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2" />
+            </svg>
+            <span className="cart-count">{cart.length}</span>
+          </Link>
         </li>
-        <p> {cart.length}</p>
         <li>
-          <Link to="/login">Login</Link>
+          <Link to="/login">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              fill="currentColor"
+              className="bi bi-person"
+              viewBox="0 0 16 16"
+            >
+              <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z" />
+            </svg>
+          </Link>
         </li>
+        {isAuthenticated && (
+          <li>
+            <button onClick={logout}>logout</button>
+          </li>
+        )}
       </ul>
     </nav>
   );

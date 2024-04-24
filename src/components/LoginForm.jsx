@@ -1,6 +1,11 @@
 import { useState } from "react";
+import { useContext } from "react";
+import { AuthContext } from "../context/AuthContext";
 
 const LoginForm = () => {
+  const { login, isAuthenticated } = useContext(AuthContext);
+  console.log(isAuthenticated);
+
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
 
@@ -8,6 +13,7 @@ const LoginForm = () => {
     event.preventDefault();
     console.log(username);
     console.log(email);
+    login({ username, email });
   };
   return (
     <div>
