@@ -1,34 +1,38 @@
 import { useState } from "react";
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 const LoginForm = () => {
   const { login, isAuthenticated } = useContext(AuthContext);
   console.log(isAuthenticated);
 
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
+  const [mail, setMail] = useState("");
+
+  const navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(username);
-    console.log(email);
-    login({ username, email });
+    console.log(name);
+    console.log(mail);
+    login({ name, mail });
+    navigate("/");
   };
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="username">Nombre</label>
+        <label htmlFor="name">Nombre</label>
         <input
           type="text"
-          id="username"
-          onChange={(event) => setUsername(event.target.value)}
+          id="name"
+          onChange={(event) => setName(event.target.value)}
         />
         <label htmlFor="email">Email</label>
         <input
           type="email"
           id="email"
-          onChange={(event) => setEmail(event.target.value)}
+          onChange={(event) => setMail(event.target.value)}
         />
         <button type="submit">Iniciar sesion</button>
       </form>

@@ -4,6 +4,7 @@ import { useContext } from "react";
 
 function AddToCartButton({ product }) {
   const { addProduct } = useContext(CartContext);
+  console.log(product);
   return <button onClick={() => addProduct(product)}>Agregar al carro</button>;
 }
 

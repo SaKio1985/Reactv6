@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import BackButton from "../components/BackButton";
 import AddToCartButton from "../components/AddToCartButton";
-import Navbar from "../components/Navbar";
+import Navbar from "../components/NavbarSearch";
 import Footer from "../components/Footer/Footer";
 import Banner from "../components/Banner";
 import data from "../data.json";
@@ -37,7 +37,7 @@ const DetailsPage = () => {
           <p className="product-price">{`$${product.price}`}</p>
           <p className="product-description">{product.description}</p>
           <p className="product-category">{`Category: ${product.category}`}</p>
-          <AddToCartButton item={product} />
+          <AddToCartButton product={product} />
         </div>
       </div>
       <Footer />

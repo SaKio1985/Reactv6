@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Navbar from "./components/Navbar";
+import NavbarSearch from "./components/NavbarSearch";
 import ProductCard from "./components/ProductCard";
 import data from "./data.json";
 import Footer from "./components/Footer/Footer";
@@ -24,7 +24,7 @@ const App = () => {
 
   return (
     <>
-      <Navbar onSearchSubmit={filterProducts} />
+      <NavbarSearch onSearchSubmit={filterProducts} />
       <Banner />
       <div className="product-list">
         {filteredProducts.map((product) => (

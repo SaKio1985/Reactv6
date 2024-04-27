@@ -43,6 +43,15 @@ const NavbarSearch = ({ onSearchSubmit }) => {
       <Link to="/" className="logo-link">
         <div className="logo">Mi Tienda React</div>
       </Link>
+      <form onSubmit={handleSearchSubmit} className="search-form">
+        <input
+          type="text"
+          placeholder="Buscar productos..."
+          value={searchTerm}
+          onChange={handleSearchChange}
+        />
+        <button type="submit">Buscar</button>
+      </form>
       <button onClick={toggleDarkMode} className="theme-toggle-btn">
         {/* Icono de cambio de tema */}
       </button>

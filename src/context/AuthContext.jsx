@@ -1,5 +1,7 @@
 import { createContext, useEffect } from "react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import determineUserRole from "../utils/determineUserRole";
 
 export const AuthContext = createContext();
 
@@ -7,17 +9,27 @@ export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [userRole, setUserRole] = useState(null);
+
+  const navigate = useNavigate();
 
   const login = ({ name, mail }) => {
     setUser({ name, mail });
+    const role = determineUserRole({ mail });
+    console.log(role);
+    setUserRole(role);
     setIsAuthenticated(true);
-    window.localStorage.setItem("userData", JSON.stringify({ name, mail }));
+    window.localStorage.setItem(
+      "userData",
+      JSON.stringify({ name, mail, userRole })
+    );
   };
 
   const logout = () => {
     setUser(null);
     setIsAuthenticated(false);
     window.localStorage.removeItem("userData");
+    navigate("/");
   };
 
   useEffect(() => {
@@ -31,7 +43,7 @@ export function AuthProvider({ children }) {
 
   return (
     <AuthContext.Provider
-      value={{ user, isAuthenticated, login, logout, isLoading }}
+      value={{ user, isAuthenticated, login, logout, isLoading, userRole }}
     >
       {children}
     </AuthContext.Provider>
