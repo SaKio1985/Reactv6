@@ -11,3 +11,30 @@
 .cart-product-sum {
     display: flex;
 }
+.buy-button {
+    color: var(--bs-btn-color, #fff);
+    background-color: var(--bs-btn-bg, #858719);
+    border-color: var(--bs-btn-border-color, #dc143c);
+    padding: 10px 20px; /* Aumenta el tamaño para mejor clicabilidad */
+    font-size: 16px; /* Asegura que el texto sea legible */
+    cursor: pointer; /* Indica que es un elemento clickeable */
+    transition: background-color 0.3s, color 0.3s; /* Suaviza la transición de colores */
+}
+.reset-button {
+    --bs-btn-color: #fff;
+    color: var(--bs-btn-color, #fff);
+    background-color: var(--bs-btn-bg, #802900);
+    border-color: var(--bs-btn-border-color, #871919);
+    padding: 10px 20px; /* Aumenta el tamaño para mejor clicabilidad */
+    font-size: 16px; /* Asegura que el texto sea legible */
+    cursor: pointer; /* Indica que es un elemento clickeable */
+    transition: background-color 0.3s, color 0.3s; /* Suaviza la transición de colores */
+}
+.buy-button:hover, .buy-button:focus {
+    background-color: var(--bs-btn-hover-bg, #157347);
+    border-color: var(--bs-btn-hover-border-color, #146c43);
+}
+.reset-button:hover, .reset-button:focus {
+    background-color: var(--bs-btn-hover-bg, #157347);
+    border-color: var(--bs-btn-hover-border-color, #146c43);
+}
