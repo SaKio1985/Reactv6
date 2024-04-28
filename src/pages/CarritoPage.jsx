@@ -8,7 +8,7 @@ import "./CarritoPage.css";
 import { AuthContext } from "../context/AuthContext.jsx";
 
 const CarritoPage = () => {
-  const { cart } = useContext(CartContext);
+  const { cart, resetCart } = useContext(CartContext);
 
   const { userRole } = useContext(AuthContext);
   console.log(userRole);
@@ -19,7 +19,7 @@ const CarritoPage = () => {
   }, 0);
 
   const handleBuy = () => {
-    cartItems.lenght
+    cart.length
       ? alert("Seras redirigido a la pasarela de pago")
       : alert("Añada productos al carro");
     resetCart();

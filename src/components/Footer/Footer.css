@@ -2,7 +2,7 @@
     background-color: #333;
     color: white;
     text-align: center;
-    position: fixed; /* Cambiado de relative a fixed para mantener el footer siempre visible */
+    position: static; /* Cambiado de relative a fixed para mantener el footer siempre visible */
     bottom: 0;
     left: 0;
     width: 100%;

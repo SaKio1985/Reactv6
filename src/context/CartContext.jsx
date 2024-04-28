@@ -1,5 +1,4 @@
 import { createContext, useState } from "react";
-import ProductCard from "../components/ProductCard";
 
 export const CartContext = createContext();
 
@@ -7,8 +6,10 @@ export function CartProvider({ children }) {
   const [cart, setCart] = useState([]);
 
   function addProduct(product) {
-    setCart(prevCart => {
-      const index = prevCart.findIndex(productCart => productCart.id === product.id);
+    setCart((prevCart) => {
+      const index = prevCart.findIndex(
+        (productCart) => productCart.id === product.id
+      );
       if (index !== -1) {
         const newCart = [...prevCart];
         newCart[index].quantity += 1;
@@ -20,8 +21,12 @@ export function CartProvider({ children }) {
     });
   }
 
+  function resetCart() {
+    setCart([]); // Establece el carrito a un arreglo vacío
+  }
+
   return (
-    <CartContext.Provider value={{ cart, addProduct }}>
+    <CartContext.Provider value={{ cart, addProduct, resetCart }}>
       {children}
     </CartContext.Provider>
   );
