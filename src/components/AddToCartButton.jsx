@@ -5,7 +5,11 @@ import { useContext } from "react";
 function AddToCartButton({ product }) {
   const { addProduct } = useContext(CartContext);
   console.log(product);
-  return <button onClick={() => addProduct(product)}>Agregar al carro</button>;
+  return (
+    <button className="addProduct-button" onClick={() => addProduct(product)}>
+      Agregar al carro
+    </button>
+  );
 }
 
 export default AddToCartButton;
