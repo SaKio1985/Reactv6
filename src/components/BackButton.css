@@ -1,14 +1,14 @@
-.addProduct-button {
+.back-button {
     --bs-btn-color: #fff;
     color: var(--bs-btn-color, #fff);
     background-color: var(--bs-btn-bg, #4b0082);
     border-color: var(--bs-btn-border-color, #fff);
     padding: 10px 20px; /* Aumenta el tamaño para mejor clicabilidad */
-    font-size: 16px; /* Asegura que el texto sea legible */
+    font-size: 36px; /* Asegura que el texto sea legible */
     cursor: pointer; /* Indica que es un elemento clickeable */
     transition: background-color 0.3s, color 0.3s; /* Suaviza la transición de colores */
 }
-.addProduct-button:hover .addProduct-button:focus {
+.back-button:hover .back-button:focus {
     background-color: var(--bs-btn-hover-bg, #090082);
     border-color: var(--bs-btn-hover-border-color, #dcdcdc);
 }

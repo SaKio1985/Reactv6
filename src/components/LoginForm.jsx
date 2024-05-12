@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import "./LoginForm.css";
 
 const LoginForm = () => {
   const { login, isAuthenticated } = useContext(AuthContext);
@@ -35,7 +36,9 @@ const LoginForm = () => {
           id="email"
           onChange={(event) => setMail(event.target.value)}
         />
-        <button type="submit">Iniciar sesion</button>
+        <button className="login-button" type="submit">
+          Iniciar sesion
+        </button>
       </form>
     </div>
   );

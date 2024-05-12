@@ -5,11 +5,23 @@ import { ProductsContext } from "./context/ProductContext";
 import { AuthContext } from "./context/AuthContext";
 import Footer from "./components/Footer/Footer";
 import Banner from "./components/Banner";
+import "./App.css";
+import AddProductModal from "./components/AddProductModal";
 
 const App = () => {
   const { products, isLoading } = useContext(ProductsContext);
   const { userRole } = useContext(AuthContext);
   const isAdmin = userRole === "admin";
+
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const handleOpenModal = () => {
+    setModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setModalOpen(false);
+  };
 
   const [filteredProducts, setFilteredProducts] = useState(products);
 
@@ -29,12 +41,17 @@ const App = () => {
         <p>Cargando productos...</p>
       ) : (
         <div className="product-list">
-          {products.map((product) => (
+          {filteredProducts.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
         </div>
       )}
-      {isAdmin && <button>Add product</button>}
+      {isAdmin && (
+        <button className="add-product-button" onClick={handleOpenModal}>
+          Add product
+        </button>
+      )}
+      <AddProductModal isOpen={modalOpen} onClose={handleCloseModal} />
       <Footer />
     </>
   );

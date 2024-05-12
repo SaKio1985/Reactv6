@@ -29,7 +29,7 @@ export const ProductsProvider = ({ children }) => {
     } finally {
       setTimeout(() => {
         setIsLoading(false);
-      }, 2000);
+      }, 3000);
     }
   };
 
@@ -100,6 +100,10 @@ export const ProductsProvider = ({ children }) => {
 
   const addProduct = async (newProduct) => {
     try {
+      if (!("rating" in newProduct)) {
+        newProduct.rating = { rate: 0, count: 0 };
+      }
+
       setIsLoading(true);
       const response = await axios.post(API_URL, newProduct);
       const addedProduct = response.data;

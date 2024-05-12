@@ -8,6 +8,22 @@
     box-shadow: 0 4px 8px rgba(221, 29, 29, 0.1);
     text-align: center; 
   }
+
+  .image-container{
+    position: relative;
+    display: inline-block;
+  }
+
+  .icons{
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 5px;
+    border-radius: 5px;
+  }
   
   .product-image {
     width: 100%;

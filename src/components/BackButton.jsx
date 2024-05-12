@@ -4,9 +4,9 @@ import { Link } from "react-router-dom";
 const BackButton = () => {
   return (
     <div className="back-button">
-      <Link to={"/"}>
+      <button onClick={() => window.history.back()}>
         <i className="fa fa-arrow-left"></i> Volver
-      </Link>
+      </button>
     </div>
   );
 };

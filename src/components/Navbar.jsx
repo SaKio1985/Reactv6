@@ -118,7 +118,9 @@ const NavbarSearch = ({ onSearchSubmit }) => {
         </li>
         {isAuthenticated && (
           <li>
-            <button onClick={logout}>logout</button>
+            <button className="logout-button" onClick={logout}>
+              logout
+            </button>
           </li>
         )}
       </ul>
