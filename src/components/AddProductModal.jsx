@@ -1,107 +1,92 @@
-import { useContext, useNavigate, useState } from "react";
-import { ProductsContext } from "../context/ProductContext";
+import React from "react";
+import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
 import "./AddProductModal.css";
 
 const AddProductModal = ({ isOpen, onClose }) => {
-  const [formData, setFormData] = useState({
-    title: "",
-    price: 0,
-    description: "",
-    category: "",
-    image: "",
-  });
-  const { addProduct } = useContext(ProductsContext);
+  const dispatch = useDispatch();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    trigger, // Agrega trigger a las opciones del useForm
+  } = useForm();
 
-  //const navigate = useNavigate();
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevProduct) => ({
-      ...prevProduct,
-      [name]: value,
-    }));
+  const onSubmit = (data) => {
+    dispatch(isOpen(data));
+    onClose();
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    console.log("datos del formulario", formData);
-    addProduct(formData);
-    //navigate("/");
-  };
   const handleModalClick = (e) => {
     if (e.target.classList.contains("modal-overlay")) {
       onClose();
     }
   };
 
-  if (!isOpen) {
-    return null;
-  }
+  const handleBlur = (fieldName) => {
+    trigger(fieldName);
+  };
+
   return (
     <div className="modal-overlay" onClick={handleModalClick}>
-      <div className="modal-container" style={{ width: "600px" }}>
-        <div className="modal-content">
-          <h2>Nuevo Producto</h2>
-          <form onSubmit={handleSubmit}>
-            <div className="input-group">
-              <label htmlFor="title">Título:</label>
-              <input
-                type="text"
-                id="title"
-                name="title"
-                onChange={handleInputChange}
-                value={formData.title}
-              />
-            </div>
-            <div className="input-group">
-              <label htmlFor="price">Precio:</label>
-              <input
-                type="number"
-                id="price"
-                name="price"
-                onChange={handleInputChange}
-                value={formData.price}
-              />
-            </div>
-            <div className="input-group">
-              <label htmlFor="description">Descripción:</label>
-              <textarea
-                id="description"
-                name="description"
-                onChange={handleInputChange}
-                value={formData.description}
-              />
-            </div>
-            <div className="input-group">
-              <label htmlFor="category">Categoría:</label>
-              <input
-                type="text"
-                id="category"
-                name="category"
-                onChange={handleInputChange}
-                value={formData.category}
-              />
-            </div>
-            <div className="input-group">
-              <label htmlFor="image">URL de la Imagen:</label>
-              <input
-                type="text"
-                id="image"
-                name="image"
-                onChange={handleInputChange}
-                value={formData.image}
-              />
-            </div>
-            <div className="button-group">
-              <button className="create-button" type="submit">
-                Crear producto
-              </button>
-              <button className="close-button" onClick={onClose}>
-                Cerrar
-              </button>
-            </div>
-          </form>
-        </div>
+      <div className="modal-content">
+        <span className="close-btn" onClick={onClose}>
+          ×
+        </span>
+        <h2>Añadir Nuevo Producto</h2>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <label>
+            Título:
+            <input
+              type="text"
+              {...register("title", { required: "El título es requerido" })}
+              onBlur={() => handleBlur("title")}
+            />
+            {errors.title && <span>{errors.title.message}</span>}
+          </label>
+          <label>
+            Precio:
+            <input
+              type="number"
+              {...register("price", { required: "El precio es requerido" })}
+              onBlur={() => handleBlur("price")}
+            />
+            {errors.price && <span>{errors.price.message}</span>}
+          </label>
+          <label>
+            Descripción:
+            <textarea
+              {...register("description", {
+                required: "La descripción es requerida",
+              })}
+              onBlur={() => handleBlur("description")}
+            />
+            {errors.description && <span>{errors.description.message}</span>}
+          </label>
+          <label>
+            Categoría:
+            <input
+              type="text"
+              {...register("category", {
+                required: "La categoría es requerida",
+              })}
+              onBlur={() => handleBlur("category")}
+            />
+            {errors.category && <span>{errors.category.message}</span>}
+          </label>
+          <label>
+            URL de la Imagen:
+            <input
+              type="text"
+              {...register("image", {
+                required: "La URL de la imagen es requerida", productValidationRules.image
+              })}
+              onBlur={() => handleBlur("image")}
+            />
+            {errors.image && <span>{errors.image.message}</span>}
+          </label>
+          <button type="submit">Añadir Producto</button>
+        </form>
       </div>
     </div>
   );
