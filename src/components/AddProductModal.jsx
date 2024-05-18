@@ -2,6 +2,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import "./AddProductModal.css";
+import { productValidationRules } from "../utils/productValidationUtils";
 
 const AddProductModal = ({ isOpen, onClose }) => {
   const dispatch = useDispatch();
@@ -30,9 +31,7 @@ const AddProductModal = ({ isOpen, onClose }) => {
   return (
     <div className="modal-overlay" onClick={handleModalClick}>
       <div className="modal-content">
-        <span className="close-btn" onClick={onClose}>
-          ×
-        </span>
+        <span className="close-btn" onClick={onClose}></span>
         <h2>Añadir Nuevo Producto</h2>
         <form onSubmit={handleSubmit(onSubmit)}>
           <label>
@@ -44,11 +43,12 @@ const AddProductModal = ({ isOpen, onClose }) => {
             />
             {errors.title && <span>{errors.title.message}</span>}
           </label>
+
           <label>
             Precio:
             <input
               type="number"
-              {...register("price", { required: "El precio es requerido" })}
+              {...register("price", productValidationRules.price)}
               onBlur={() => handleBlur("price")}
             />
             {errors.price && <span>{errors.price.message}</span>}
@@ -56,9 +56,7 @@ const AddProductModal = ({ isOpen, onClose }) => {
           <label>
             Descripción:
             <textarea
-              {...register("description", {
-                required: "La descripción es requerida",
-              })}
+              {...register("description", productValidationRules.description)}
               onBlur={() => handleBlur("description")}
             />
             {errors.description && <span>{errors.description.message}</span>}
@@ -67,9 +65,7 @@ const AddProductModal = ({ isOpen, onClose }) => {
             Categoría:
             <input
               type="text"
-              {...register("category", {
-                required: "La categoría es requerida",
-              })}
+              {...register("category", productValidationRules.category)}
               onBlur={() => handleBlur("category")}
             />
             {errors.category && <span>{errors.category.message}</span>}
@@ -78,9 +74,7 @@ const AddProductModal = ({ isOpen, onClose }) => {
             URL de la Imagen:
             <input
               type="text"
-              {...register("image", {
-                required: "La URL de la imagen es requerida", productValidationRules.image
-              })}
+              {...register("image", productValidationRules.image)}
               onBlur={() => handleBlur("image")}
             />
             {errors.image && <span>{errors.image.message}</span>}
