@@ -5,12 +5,12 @@ import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 import "./LoginForm.css";
 
-const LoginForm = ({ login }) => {
+const LoginForm = () => {
   const {
     register,
     handleSubmit,
     watch,
-    formState: { errors },
+    // formState: { errors },
   } = useForm();
   const { login, logout, isAuthenticated } = useContext(AuthContext);
   const navigate = useNavigate();

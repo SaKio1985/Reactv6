@@ -9,9 +9,10 @@ const AddProductModal = ({ isOpen, onClose }) => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState,
     trigger, // Agrega trigger a las opciones del useForm
   } = useForm();
+  const { errors } = formState;
 
   const onSubmit = (data) => {
     dispatch(isOpen(data));
