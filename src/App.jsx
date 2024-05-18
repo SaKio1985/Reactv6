@@ -7,6 +7,8 @@ import Footer from "./components/Footer/Footer";
 import Banner from "./components/Banner";
 import "./App.css";
 import AddProductModal from "./components/AddProductModal";
+import store from "./store/store";
+import { Provider } from "react-redux";
 
 const App = () => {
   const { products, isLoading } = useContext(ProductsContext);
