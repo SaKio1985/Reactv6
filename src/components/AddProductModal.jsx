@@ -24,7 +24,6 @@ const AddProductModal = ({ isOpen, onClose }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log("datos del formulario", formData);
     addProduct(formData);
     //navigate("/");
   };

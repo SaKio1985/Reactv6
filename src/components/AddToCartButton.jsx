@@ -5,7 +5,6 @@ import "./AddToCartButton.css";
 
 function AddToCartButton({ product }) {
   const { addProduct } = useContext(CartContext);
-  console.log(product);
   return (
     <button className="addProduct-button" onClick={() => addProduct(product)}>
       Agregar al carro
