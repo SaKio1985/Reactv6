@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import NavbarSearch from "./components/NavbarSearch";
 import ProductCard from "./components/ProductCard";
 import { ProductsContext } from "./context/ProductContext";
@@ -17,6 +17,8 @@ const App = () => {
 
   const [modalOpen, setModalOpen] = useState(false);
 
+  const [filteredProducts, setFilteredProducts] = useState([]);
+
   const handleOpenModal = () => {
     setModalOpen(true);
   };
@@ -25,15 +27,15 @@ const App = () => {
     setModalOpen(false);
   };
 
-  const [filteredProducts, setFilteredProducts] = useState(products);
-
   const filterProducts = (newSearchTerm) => {
     const filtered = products.filter((product) =>
       product.title.toLowerCase().includes(newSearchTerm.toLowerCase())
     );
     setFilteredProducts(filtered);
   };
-  console.log(products);
+  useEffect(() => {
+    setFilteredProducts(products);
+  }, [products]);
 
   return (
     <>

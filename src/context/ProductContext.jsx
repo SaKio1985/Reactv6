@@ -53,7 +53,7 @@ export const ProductsProvider = ({ children }) => {
   const updateProduct = async (id, editedProduct) => {
     try {
       setIsLoading(true);
-      const response = await axios.get(`${API_URL}/${id}`, editedProduct);
+      const response = await axios.put(`${API_URL}/${id}`, editedProduct);
       const updatedProduct = {
         ...response.data,
         updatedAt: new Date().toISOString(),
