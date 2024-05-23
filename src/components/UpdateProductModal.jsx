@@ -2,11 +2,14 @@ import { useContext, useNavigate, useState } from "react";
 import { ProductsContext } from "../context/ProductContext";
 import "./AddProductModal.css";
 
-const UpdateProductModal = ({ product, onClose }) => {
+const UpdateProductModal = ({ product, onClose, isOpen }) => {
   const [editData, setEditData] = useState({
     title: product.title,
     price: product.price,
     description: product.description,
+    category: product.category,
+    image: product.image,
+    rating: product.rating,
   });
   const { updateProduct } = useContext(ProductsContext);
 
@@ -29,7 +32,7 @@ const UpdateProductModal = ({ product, onClose }) => {
       ...editData,
     };
 
-    await updateProduct(product.id, updateProduct);
+    await updateProduct(product.id, editData);
     onClose();
   };
 
@@ -38,6 +41,9 @@ const UpdateProductModal = ({ product, onClose }) => {
       onClose();
     }
   };
+  if (isOpen === false) {
+    return null;
+  }
 
   return (
     <div className="modal-overlay" onClick={handleModalClick}>

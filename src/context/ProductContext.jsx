@@ -18,7 +18,7 @@ export const ProductsProvider = ({ children }) => {
     try {
       setIsLoading(true);
 
-      const response = await axios.get(API_URL);
+      const response = await axios.put(`${API_URL}/${id}`, editedProduct);
       setProducts(response.data);
     } catch (e) {
       if (e.response && e.response.status === 404) {
